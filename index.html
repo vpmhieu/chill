@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://apis.google.com/js/api.js"></script>
+  </head>
+  <style>
+    body {
+      background-color: #222;
+      color: #7b8;
+      font-family: "Roboto", "Open Sans", Arial, sans-serif;
+      font-size: 16px; /* Cỡ chữ mặc định */
+      line-height: 1.6; /* Khoảng cách dòng */
+    }
+  </style>
+  <body>
+    <div
+      style="display: flex; margin: auto"
+      onclick="window.location.href='trangchu.html'"
+    >
+      <h4 style="margin: auto">Trang Chủ</h4>
+    </div>
+    <br />
+    <div style="display: flex">
+      <button id="prev" onclick="prev()">Trước</button>
+      <select
+        id="mySelect"
+        style="width: 250px; background-color: #222; color: #7b8; font-size: 11px; margin: auto;"
+      >
+        <option value="" disabled selected>Chọn một giá trị</option>
+      </select>
+      <button id="last" onclick="last()">Sau</button>
+    </div>
+    <br />
+
+    <div>
+      <h3 id="selected2" style="color: #b78"></h3>
+    </div>
+
+    <div id="content" style="white-space: pre-wrap; margin-top: 20px"></div>
+
+    <br />
+    <div style="display: flex">
+      <button id="prev2" onclick="prev()">Trước</button>
+      <div style="margin-left: 20px; margin-right: 20px">
+        <p id="selected" style="margin: 0"></p>
+      </div>
+      <button id="last2" onclick="last()">Sau</button>
+    </div>
+
+    <script>
+      const dic = {
+        "truong-sinh-bat-dau-tu-tap-dich-nuoi-ga": [[3, 38], 46],
+      };
+      const urlParams = new URLSearchParams(window.location.search);
+      const trValue =
+        urlParams.get("tr") ?? "truong-sinh-bat-dau-tu-tap-dich-nuoi-ga";
+      const selectElement = document.getElementById("mySelect");
+
+      const chValue = urlParams.get("ch")?.split("_");
+      const obj = {};
+      const val = {};
+      let lines;
+      let idx = null;
+
+      fetch("./" + trValue + "/mucluc.txt")
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          return response.text();
+        })
+        .then((data) => {
+          lines = data.split("\n");
+          const line =
+            lines[
+              (chValue[0] - dic[trValue][0][0]) * 50 + chValue[1] - 1
+            ].split("=")[1];
+          document.getElementById("selected").textContent = line;
+          document.getElementById("selected2").textContent = line;
+          init();
+        })
+        .catch((error) => {
+          document.getElementById("selected").textContent =
+            "Không thể đọc file: " + error.message;
+        });
+
+      function prev() {
+        if (idx != null) {
+          if (idx[1] > 1) {
+            window.location.href = `index.html?ch=${idx[0]}_${parseInt(
+              idx[1] - 1
+            )}&tr=${trValue}`;
+          } else {
+            if (idx[0] > 3) {
+              window.location.href = `index.html?ch=${parseInt(
+                idx[0] - 1
+              )}_50&tr=${trValue}`;
+            }
+          }
+        }
+      }
+      function last() {
+        if (idx != null) {
+          if (idx[1] < 50) {
+            window.location.href = `index.html?ch=${idx[0]}_${parseInt(
+              idx[1] + 1
+            )}&tr=${trValue}`;
+          } else {
+            if (idx[0] < 38) {
+              window.location.href = `index.html?ch=${parseInt(
+                idx[0] + 1
+              )}_1&tr=${trValue}`;
+            }
+          }
+        }
+      }
+      function loadFile(txtFilePath) {
+        fetch(txtFilePath)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.text();
+          })
+          .then((data) => {
+            document.getElementById("content").textContent = data; // Hiển thị nội dung
+          })
+          .catch((error) => {
+            document.getElementById("content").textContent =
+              "Không thể đọc file: " + error.message;
+          });
+        window.scrollTo(0, 0);
+      }
+      selectElement.onchange = function () {
+        const txtFilePath = this.value; // Lấy giá trị của option được chọn
+        idx = obj[this.value];
+        window.location.href = `index.html?ch=${idx[0]}_${idx[1]}&tr=${trValue}`;
+      };
+
+      function init() {
+        for (var i = dic[trValue][0][0]; i <= dic[trValue][0][1]; i++) {
+          let maxJ = 50;
+          if (i == dic[trValue][0][1]) {
+            maxJ = dic[trValue][1];
+          }
+          for (var j = 1; j <= maxJ; j++) {
+            const option = document.createElement("option"); // Tạo thẻ <option>
+            const value = "./" + trValue + "/" + i + "/" + j + ".txt";
+            option.value = value;
+            obj[value] = [i, j];
+            val["" + i + "," + j] = value;
+            option.textContent =
+              "Quyển " +
+              i +
+              " tập " +
+              j +
+              ": " +
+              lines[(i - dic[trValue][0][0]) * 50 + j - 1].split("=")[1]; // Đặt văn bản hiển thị
+            selectElement.appendChild(option); // Thêm <option> vào <select>
+          }
+        }
+      selectElement.value = val["" + chValue[0] + "," + chValue[1]];
+      idx = obj[selectElement.value];
+      loadFile(selectElement.value);
+      }
+
+      // selectElement.dispatchEvent(new Event("change"));
+    </script>
+  </body>
+</html>
