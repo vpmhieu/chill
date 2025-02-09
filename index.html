@@ -67,6 +67,7 @@
       let lines;
       let idx = null;
 
+      console.log(trValue)
       fetch("./" + trValue + "/mucluc.txt")
         .then((response) => {
           if (!response.ok) {
@@ -78,7 +79,7 @@
           lines = data.split("\n");
           const line =
             lines[
-              (chValue[0] - dic[trValue][0][0]) * 50 + chValue[1] - 1
+              parseInt((chValue[0] - dic[trValue][0][0]) * 50) + parseInt(chValue[1] - 1)
             ].split("=")[1];
           document.getElementById("selected").textContent = line;
           document.getElementById("selected2").textContent = line;
@@ -86,7 +87,7 @@
         })
         .catch((error) => {
           document.getElementById("selected").textContent =
-            "Không thể đọc file: " + error.message;
+            "Không thể đọc file1: " + error.message;
         });
 
       function prev() {
@@ -120,6 +121,7 @@
         }
       }
       function loadFile(txtFilePath) {
+        console.log(txtFilePath)
         fetch(txtFilePath)
           .then((response) => {
             if (!response.ok) {
@@ -132,7 +134,7 @@
           })
           .catch((error) => {
             document.getElementById("content").textContent =
-              "Không thể đọc file: " + error.message;
+              "Không thể đọc file2: " + error.message;
           });
         window.scrollTo(0, 0);
       }
