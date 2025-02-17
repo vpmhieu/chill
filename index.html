@@ -54,7 +54,11 @@
       const dic = {
         "truong-sinh-bat-dau-tu-tap-dich-nuoi-ga": [[3, 38], 46],
         "ta-lang-le-thang-cap-trong-the-gioi-yeu-ma": [[1, 12], 50],
-        "co-duyen-cua-nguoi-rat-tot-ta-vui-long-nhan": [[1,92], 50]
+        "co-duyen-cua-nguoi-rat-tot-ta-vui-long-nhan": [[1,92], 50],
+        "pham-nhan-tu-tien-ai-co-the-so-ta-cuc-am-cang-am": [[1,21], 50],
+        "tay-du-chi-bat-dau-tu-choi-dai-nao-thien-cung": [[1,29], 50],
+        "ta-mo-phong-truong-sinh-lo": [[1,33], 50],
+        "ta-tai-tu-tien-the-gioi-mo-nong-truong": [[1,59], 50],
       };
       const urlParams = new URLSearchParams(window.location.search);
       const trValue =
@@ -70,17 +74,28 @@
       console.log(trValue)
       fetch("./" + trValue + "/mucluc.txt")
         .then((response) => {
+          console.log("111")
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
           }
           return response.text();
         })
         .then((data) => {
+          console.log("222")
+          
           lines = data.split("\n");
+          console.log(lines);
+          console.log(lines[
+              parseInt((chValue[0] - dic[trValue][0][0]) * 50) + parseInt(chValue[1] - 1)
+            ],"chValue");
+          console.log(trValue,"trValue");
+          
           const line =
             lines[
               parseInt((chValue[0] - dic[trValue][0][0]) * 50) + parseInt(chValue[1] - 1)
             ].split("=")[1];
+            // console.log(line);
+            
           document.getElementById("selected").textContent = line;
           document.getElementById("selected2").textContent = line;
           init();
