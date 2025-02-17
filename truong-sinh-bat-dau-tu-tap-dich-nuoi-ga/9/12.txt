@@ -196,4 +196,4 @@ Một bóng người cởi trần, lặng lẽ rơi xuống.
 
 ---oCo--- Có 2 Linh Thực Bộ.
 
-Một nơi là Main làm việc, là Thực trong Thực Phẩm (Tạm gọi là Linh Thực Bộ) Chỗ còn lại là Thực trong Linh Thựcu002FLương Thực (Tạm gọi là Lương Thực Bộ) Để dễ phân biệt, chứ đọc loạn quá.
+Một nơi là Main làm việc, là Thực trong Thực Phẩm (Tạm gọi là Linh Thực Bộ) Chỗ còn lại là Thực trong Linh Thực/Lương Thực (Tạm gọi là Lương Thực Bộ) Để dễ phân biệt, chứ đọc loạn quá.

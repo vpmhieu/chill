@@ -50,9 +50,9 @@ Sau đó, Lý Phàm lại lấy ra nhân chi kỳ vật trung phẩm còn lại:
 
 "Khi nạp năng lượng cho Lưu Điểm thứ hai, lần thứ nhất và thứ hai đều dùng Chỉ Bộ Tàn bi bị hư hại, tiến độ nạp năng lượng cũng được gia tăng 25% một lần."
 
-"Lần thứ ba và thứ tư thì dùng hai món nhân chi kỳ vật hoàn chỉnh, tiến độ nạp năng lượng cũng được tăng lên 30%u002Flần."
+"Lần thứ ba và thứ tư thì dùng hai món nhân chi kỳ vật hoàn chỉnh, tiến độ nạp năng lượng cũng được tăng lên 30%/lần."
 
-"Nhưng đến khi mở khoá Lưu Điểm thứ ba, tiến độ chỉ có thể gia tăng 10%u002Flần. Hơn nữa, nhân chi kỳ vật hạ phẩm hay trung phẩm đối với "Hoàn Chân" cũng không khác gì nhau. Cũng không biết thiên chi kỳ và địa chi kỳ có thể tăng tiến độ nhiều hơn hay không nữa."
+"Nhưng đến khi mở khoá Lưu Điểm thứ ba, tiến độ chỉ có thể gia tăng 10%/lần. Hơn nữa, nhân chi kỳ vật hạ phẩm hay trung phẩm đối với "Hoàn Chân" cũng không khác gì nhau. Cũng không biết thiên chi kỳ và địa chi kỳ có thể tăng tiến độ nhiều hơn hay không nữa."
 
 "Việc nạp năng lượng mở khoá Lưu Điểm sau này sẽ ngày càng khó khăn hơn. Khi Lưu Điểm đã được cố định thì cũng không thể bị thay đổi."
 
