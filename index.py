@@ -36,8 +36,8 @@ def find_substring_first_occurrence(string, A, B):
         return None  # Không tìm thấy B sau A
     
 m = ""
-for a in range(1,70):
-    URL = "https://truyendocviet.vn/doc-truyen/su-huynh-cua-ta-qua-manh/read/chapters.html/"+str(a)+".html"
+for a in range(1,78):
+    URL = "https://truyendocviet.vn/doc-truyen/khau-van-tien-dao-ban-dich-thu-2/read/chapters.html/"+str(a)+".html"
     r = requests.get(url = URL)
     html_content=r.text
     content = find_substring_first_occurrence(html_content,'"arrChapters":',',"arrDocuments')
@@ -49,7 +49,7 @@ for a in range(1,70):
     obj = json.loads(content)
     for index, value in enumerate(obj):
         print("Quyển " + str(a) + " - chap " + str(index+1))
-        URL = "https://truyendocviet.vn/doc-truyen/su-huynh-cua-ta-qua-manh/read/"+value['_id']+".html"
+        URL = "https://truyendocviet.vn/doc-truyen/khau-van-tien-dao-ban-dich-thu-2/read/"+value['_id']+".html"
         r = requests.get(url = URL)
         html_content=r.text
         ncont = find_substring_first_occurrence(html_content,'"CurrentChapter":','ContentOrder')
@@ -60,11 +60,11 @@ for a in range(1,70):
         ncont = ncont[15:len(ncont)-15]
         ncont = ncont.replace(r'\n', '\n\n').replace('\\', '')
         lcont = lcont.replace(r'\n', '\n\n').replace('\\', '')
-        path = "su-huynh-cua-ta-qua-manh/"+str(a)+"/"+str(index+1)+".txt"
+        path = "khau-van-tien-dao-ban-dich-thu-2/"+str(a)+"/"+str(index+1)+".txt"
         m = m + str(a) + "_" + str(index+1) + "=" + lcont + "\n"
         os.makedirs(os.path.dirname(path), exist_ok=True)
         with open(path, "w") as f:
             f.write(ncont)
-with open("su-huynh-cua-ta-qua-manh/mucluc.txt", "w") as f:
+with open("khau-van-tien-dao-ban-dich-thu-2/mucluc.txt", "w") as f:
   f.write(m)
     # print(content)
