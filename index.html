@@ -70,7 +70,18 @@
       const trValue =
         urlParams.get("tr") ?? "truong-sinh-bat-dau-tu-tap-dich-nuoi-ga";
       const selectElement = document.getElementById("mySelect");
-
+      const mode = urlParams.get("mode") ?? 1;
+      if(mode==2){
+        document.body.style.backgroundColor = "rgb(196, 229, 204)";
+        document.body.style.color = "rgb(76, 39, 48)";
+        const sel =document.getElementById("mySelect");
+        sel.style.backgroundColor = "rgb(196, 229, 204)";
+        sel.style.color = "rgb(76, 39, 48)";
+      }
+      const size = urlParams.get("size");
+      if(size){
+        document.body.style.fontSize = size;
+      }
       const chValue = urlParams.get("ch")?.split("_");
       const obj = {};
       const val = {};
